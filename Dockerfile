@@ -13,7 +13,10 @@ RUN R CMD javareconf \
 RUN Rscript -e "remotes::install_github('paleolimbot/qgisprocess')"
 
 RUN R CMD javareconf \
-  && Rscript -e "install.packages('s2', dep=T)" 
+  && Rscript -e "install.packages('versions')" 
+
+RUN R CMD javareconf \
+  && Rscript -e "versions::install.versions('s2', '1.0.3')" 
 
 COPY renv.lock renv.lock
 RUN R -e 'renv::consent(provided = TRUE); renv::restore()'
@@ -88,6 +91,8 @@ RUN tlmgr update --self
 
 EXPOSE 8787
 CMD ["/init"]
+
+CMD /bin/bash
 
 
 
