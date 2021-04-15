@@ -106,15 +106,6 @@ RUN apt-get update \
     unixodbc-dev \
     wget
 
-    
-RUN install2.r --error \
-  remotes \
-  renv
-
-RUN Rscript -e "remotes::install_github('paleolimbot/qgisprocess')"
-
-COPY renv.lock renv.lock
-RUN R -e 'renv::consent(provided = TRUE); renv::restore()'
 
 RUN mkdir -p /etc/R \
      && mkdir -p /etc/rstudio \
@@ -184,8 +175,13 @@ RUN wget https://github.com/conda-forge/miniforge/releases/download/4.9.2-5/Mamb
 ENV PATH=/usr/local/mambaforge/bin/:$PATH
 
 RUN R CMD javareconf \
-  && Rscript -e "install.packages(c('tidyverse', 'sparklyr', \
-    'rmarkdown', 'shiny', 'rJava', 'reticulate'))"
+  && Rscript -e "install.packages(c('remotes','renv','rmarkdown', 'shiny', 'rJava', 'reticulate', 'PKI','bookdown','rticles','rmdshower','tinytex'))"
+
+
+RUN Rscript -e "remotes::install_github('paleolimbot/qgisprocess')"
+
+COPY renv.lock renv.lock
+RUN R -e 'renv::consent(provided = TRUE); renv::restore()'
 
 
 
@@ -227,8 +223,6 @@ RUN wget "https://travis-bin.yihui.name/texlive-local.deb" \
     vim \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/ \
-  ## Use tinytex for LaTeX installation
-  && install2.r --error tinytex \
   ## Admin-based install of TinyTeX:
   && wget -qO- \
     "https://github.com/yihui/tinytex/raw/master/tools/install-unx.sh" | \
@@ -251,14 +245,12 @@ RUN wget "https://travis-bin.yihui.name/texlive-local.deb" \
   && chown -R root:staff /opt/TinyTeX \
   && chmod -R g+w /opt/TinyTeX \
   && chmod -R g+wx /opt/TinyTeX/bin \
-  && echo "PATH=${PATH}" >> /usr/local/lib/R/etc/Renviron \
-  && install2.r --error PKI \
-  ## And some nice R packages for publishing-related stuff
-  && install2.r --error --deps TRUE \
-    bookdown rticles rmdshower rJava
+  && echo "PATH=${PATH}" >> /usr/local/lib/R/etc/Renviron 
+   
 #
 
 RUN tlmgr update --self
+
 
 EXPOSE 8787
 CMD ["/init"]
