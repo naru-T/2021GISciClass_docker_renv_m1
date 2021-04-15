@@ -7,23 +7,12 @@ RUN apt-get update && \
     binutils libproj-dev gdal-bin grass qgis qgis-plugin-grass saga libgit2-dev
 
 RUN R CMD javareconf \
-  && Rscript -e "install.packages(c('remotes','renv','tinytex'))" \
+  && Rscript -e "install.packages(c('remotes','renv','tinytex','s2','PKI','bookdown','rticles','rmdshower','rJava'))" \
   && Rscript -e "remotes::install_github('paleolimbot/qgisprocess')"
 
-RUN Rscript -e "remotes::install_github('paleolimbot/qgisprocess')"
-
-RUN R CMD javareconf \
-  && Rscript -e "install.packages('versions')" 
-
-RUN R CMD javareconf \
-  && Rscript -e "versions::install.versions('s2', '1.0.3')" 
 
 COPY renv.lock renv.lock
 RUN R -e 'renv::consent(provided = TRUE); renv::restore()'
-
-
-RUN R CMD javareconf \
-  && Rscript -e "install.packages(c('PKI','bookdown','rticles','rmdshower','rJava'))"
 
 
 
