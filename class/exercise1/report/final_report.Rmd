@@ -1,0 +1,56 @@
+---
+title: "GIScience class final report"
+author: "YOUR NAME"
+date: "SUBMISSION DATE"
+output:
+  html_document:
+    df_print: paged
+    theme: flatly
+    toc: yes
+    toc_float: true
+subtitle: "テーマ or タイトル"
+fontsize: 11pt
+linestretch: 1.2
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+下のフォーマットは一例です。　
+レポートの構成は多少替えても大丈夫です。
+
+## 1. はじめに
+### 1.1 背景
+XXXXXXXX。
+XXXXXXXXXXXX。  
+
+### 1.2 目的
+XXXXXXXX。   
+
+## 2. 手法
+XXXXXXXX。
+XXXXXXXXXXXX。  
+
+## 3. データ
+XXXXXXXX。
+XXXXXXXXXXXX。  
+
+## 4. 結果
+XXXXXXXX。
+XXXXXXXXXXXX。  
+
+## 5. 考察
+XXXXXXXX。
+XXXXXXXXXXXX。  
+
+## 6. 結論
+XXXXXXXX。
+XXXXXXXXXXXX。  
+
+## 7. 参考文献
+1. XXXXXXXX
+1. XXXXXXXXXXXX
+  
+参考文献はbibtexを使ってもOKです。

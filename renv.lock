@@ -1793,13 +1793,6 @@
       "Repository": "RSPM",
       "Hash": "74b905b0076e1de6e27f540c95ba68d5"
     },
-    "s2": {
-      "Package": "s2",
-      "Version": "1.0.3",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Hash": "eb8b8886f8b94a510cac7d27a7daf6d8"
-    },
     "sandwich": {
       "Package": "sandwich",
       "Version": "3.0-0",
