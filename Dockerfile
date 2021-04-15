@@ -12,6 +12,9 @@ RUN R CMD javareconf \
 
 RUN Rscript -e "remotes::install_github('paleolimbot/qgisprocess')"
 
+RUN R CMD javareconf \
+  && Rscript -e "install.packages('s2', dep=T)" 
+
 COPY renv.lock renv.lock
 RUN R -e 'renv::consent(provided = TRUE); renv::restore()'
 
