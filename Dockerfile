@@ -90,7 +90,6 @@ RUN tlmgr update --self
 
 
 EXPOSE 8787
-CMD ["/init"]
 
 CMD /bin/bash
 
