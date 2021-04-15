@@ -1,0 +1,13 @@
+version: '2.3'
+
+services:
+  app:
+    build: .
+    volumes:
+      - .:/home/rstudio/
+    environment:
+      PASSWORD: passwd
+    ports:
+      - "8080:8787"
+    cpu_quota: 50000
+    mem_limit: 3g
