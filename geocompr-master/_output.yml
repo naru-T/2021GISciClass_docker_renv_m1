@@ -1,0 +1,21 @@
+bookdown::gitbook:
+  css: css/style.css
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li><a href="./">Geocomputation with R</a></li>
+      after: |
+        <li><a href="https://robinlovelace.net/">Robin Lovelace</a></li>
+        <li><a href="https://nowosad.github.io/">Jakub Nowosad</a></li>
+        <li><a href="https://github.com/jannes-m/">Jannes Muenchow</a></li>
+    edit:
+      link: https://github.com/Robinlovelace/geocompr/edit/master/%s
+      text: "Edit"
+    sharing: null
+  includes:
+    in_header: ga.html
+    after_body: after-body.html
+bookdown::html_chapters:
+  css: [css/style.css, css/toc.css]
+
