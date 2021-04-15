@@ -3,7 +3,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 FROM  amoselb/rstudio-m1:latest
 
 RUN apt-get update && \
-    apt-get install -y binutils libproj-dev gdal-bin grass qgis qgis-plugin-grass saga libgit2-dev
+    apt-get install -y --no-install-recommends \
+    binutils libproj-dev gdal-bin grass qgis qgis-plugin-grass saga libgit2-dev
 
 RUN R CMD javareconf \
   && Rscript -e "install.packages(c('remotes','renv','tinytex'))" \
